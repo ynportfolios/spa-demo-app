@@ -1,3 +1,3 @@
 FROM node:14.5.0-alpine
 WORKDIR /usr/src/app
-RUN yarn install
+RUN npm install
