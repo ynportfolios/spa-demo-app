@@ -1,0 +1,41 @@
+version: '3'
+
+volumes:
+  db-data:
+
+services:
+  api:
+    build:
+      context: './api/'
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - './api:/spa-demo-app'
+    environment:
+      - 'DATABASE_PASSWORD=postgres'
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+    links:
+      - db
+
+  front:
+    build: 
+      context: './front/'
+      dockerfile: Dockerfile
+    volumes:
+      - './front:/usr/src/app'
+    command: 'sh -c "cd react-app && yarn start"'
+    ports:
+      - '8000:3000'
+
+  db:
+    image: postgres
+    volumes :
+      - 'db-data:/var/lib/postgresql/data'
+    environment:
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=postgres'
+      - 'POSTGRES_HOST_AUTH_METHOD=trust'
