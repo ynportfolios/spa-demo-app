@@ -1,27 +1,47 @@
 class IssuesController < ApplicationController
+  before_action :set_issue, only: %i[show destroy update]
 
   def index
-    @issue = Issue.all
+    issues = Issue.all.order(:id)
+    render json: issues
+  end
+
+  def show
     render json: @issue
   end
 
   def create
-    @issue = Issue.create(name: params[:name])
-    render json: @issue
+    issue = Issue.new(issue_params)
+    if issue.save
+      render json: issue
+    else
+      render json: issue.errors
+    end
   end
 
   def update
-    @issue = Issue.find(params[:id])
-    @issue.update_attributes(name: params[:name])
-    render json: @issue
+    if @issue.update(issue_params)
+      render json: @issue
+    else
+      render json: @issue.errors
+    end
   end
 
   def destroy
-    @issue = Issue.find(params[:id])
     if @issue.destroy
-      head :no_content, status: :ok
+      render json: @issue
     else
-      render json: @issue.errors, status: :unproccessable_entity
+      render json: @issue.errors
     end
+  end
+
+  private
+
+  def set_issue
+    @issue = Issue.find(params[:id])
+  end
+
+  def issue_params
+    params.require(:issue).permit(:name)
   end
 end

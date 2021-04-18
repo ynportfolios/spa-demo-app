@@ -1,5 +1,5 @@
 Issue.create([
-  {name: "点"},
-  {name: "線"},
-  {name: "面"}
-])
+               { name: '点' },
+               { name: '線' },
+               { name: '面' }
+             ])
