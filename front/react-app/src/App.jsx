@@ -11,11 +11,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function App() {
+const App = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <Todo />
     </div>
   );
-}
+};
+
+export default App;
