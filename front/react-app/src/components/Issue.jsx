@@ -18,14 +18,13 @@ const Issue = ({ issues }) => {
   const classes = useStyles();
 
   return (
-    <Grid container justify="center" spacing={2}>
+    <Grid container spacing={2}>
       {issues.map((issue) => (
         <Grid item key={issue.id} xs={12} md={6} lg={3}>
           <Card>
             <CardContent>
               <Typography variant="h3" className={classes.typography}>
                 {issue.name}
-                {console.log(issues)}
               </Typography>
             </CardContent>
             <CardActions>
