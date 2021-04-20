@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Issue from "./Issue";
 import axios from "axios";
-import Grid from "@material-ui/core/Grid";
 
 const Todo = () => {
   const [issues, setIssues] = useState([]);
@@ -14,13 +13,7 @@ const Todo = () => {
     fetchData();
   }, []);
 
-  return (
-    <Grid container justify="center" spacing={2}>
-      {issues.map((issue) => (
-        <Issue issue={issue} key={issue.id} />
-      ))}
-    </Grid>
-  );
+  return <Issue issues={issues} />;
 };
 
 export default Todo;

@@ -14,28 +14,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Issue = ({ issue }) => {
+const Issue = ({ issues }) => {
   const classes = useStyles();
 
   return (
-    <Grid item xs={12} md={6} lg={3}>
-      <Card>
-        <CardContent>
-          <Typography variant="h3" className={classes.typography}>
-            {issue.name}
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button variant="contained" color="primary">
-            EDIT
-          </Button>
-        </CardActions>
-      </Card>
+    <Grid container justify="center" spacing={2}>
+      {issues.map((issue) => (
+        <Grid item key={issue.id} xs={12} md={6} lg={3}>
+          <Card>
+            <CardContent>
+              <Typography variant="h3" className={classes.typography}>
+                {issue.name}
+                {console.log(issues)}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button variant="contained" color="primary">
+                EDIT
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+      ))}
     </Grid>
   );
 };
 Issue.propTypes = {
-  issue: PropTypes.object,
+  issues: PropTypes.array,
 };
 
 export default Issue;
