@@ -31,12 +31,23 @@ const Todo = () => {
         resetTextField();
       })
       .catch((error) => {
-        console.log("registration error", error);
+        console.log("registration error!!!", error);
       });
   };
 
   const resetTextField = () => {
     setCreateIssue("");
+  };
+
+  const deleteIssue = (id) => {
+    axios
+      .delete(`http://localhost:3000/issues/${id}`)
+      .then((response) => {
+        setIssues(issues.filter((issue) => issue.id !== response.data.id));
+      })
+      .catch((error) => {
+        console.log("delete error!!!", error);
+      });
   };
 
   return (
@@ -46,7 +57,7 @@ const Todo = () => {
         setCreateIssue={setCreateIssue}
         createNewIssue={createNewIssue}
       />
-      <Issue issues={issues} />
+      <Issue issues={issues} deleteIssue={deleteIssue} />
     </React.Fragment>
   );
 };

@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Issue = ({ issues }) => {
+const Issue = ({ issues, deleteIssue }) => {
   const classes = useStyles();
 
   return (
@@ -31,6 +31,13 @@ const Issue = ({ issues }) => {
               <Button variant="contained" color="primary">
                 EDIT
               </Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => deleteIssue(issue.id)}
+              >
+                DELETE
+              </Button>
             </CardActions>
           </Card>
         </Grid>
@@ -40,6 +47,7 @@ const Issue = ({ issues }) => {
 };
 Issue.propTypes = {
   issues: PropTypes.array,
+  deleteIssue: PropTypes.func,
 };
 
 export default Issue;
