@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Issue = ({ issues, deleteIssue }) => {
+const Issue = ({ issues, deleteIssue, showIssue, getIssue }) => {
   const classes = useStyles();
 
   return (
@@ -28,6 +28,9 @@ const Issue = ({ issues, deleteIssue }) => {
               </Typography>
             </CardContent>
             <CardActions>
+              <Button variant="contained" onClick={() => getIssue(issue.id)}>
+                SHOW
+              </Button>
               <Button variant="contained" color="primary">
                 EDIT
               </Button>
@@ -48,6 +51,8 @@ const Issue = ({ issues, deleteIssue }) => {
 Issue.propTypes = {
   issues: PropTypes.array,
   deleteIssue: PropTypes.func,
+  showIssue: PropTypes.object,
+  getIssue: PropTypes.func,
 };
 
 export default Issue;

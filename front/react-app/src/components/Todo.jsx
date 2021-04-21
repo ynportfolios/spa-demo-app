@@ -6,6 +6,7 @@ import axios from "axios";
 const Todo = () => {
   const [issues, setIssues] = useState([]);
   const [createIssue, setCreateIssue] = useState("");
+  const [showIssue, setShowIssue] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -50,6 +51,12 @@ const Todo = () => {
       });
   };
 
+  const getIssue = (id) => {
+    axios.get(`http://localhost:3000/issues/${id}`).then((response) => {
+      setShowIssue(response.data);
+    });
+  };
+
   return (
     <React.Fragment>
       <CreateForm
@@ -57,7 +64,12 @@ const Todo = () => {
         setCreateIssue={setCreateIssue}
         createNewIssue={createNewIssue}
       />
-      <Issue issues={issues} deleteIssue={deleteIssue} />
+      <Issue
+        issues={issues}
+        deleteIssue={deleteIssue}
+        showIssue={showIssue}
+        getIssue={getIssue}
+      />
     </React.Fragment>
   );
 };
