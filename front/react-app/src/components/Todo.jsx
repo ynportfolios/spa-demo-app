@@ -24,13 +24,7 @@ const Todo = () => {
         name: createIssue,
       })
       .then((response) => {
-        setIssues([
-          ...issues,
-          {
-            id: response.data.id,
-            name: response.data.name,
-          },
-        ]);
+        setIssues([...issues, response.data]);
         resetTextField();
       })
       .catch((error) => {
