@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Issue from "./Issue";
 import CreateForm from "./CreateForm";
+import ShowIssueDialog from "./ShowIssueDialog";
 import axios from "axios";
 
 const Todo = () => {
   const [issues, setIssues] = useState([]);
   const [createIssue, setCreateIssue] = useState("");
-  const [showIssue, setShowIssue] = useState({});
+  const [showIssue, setShowIssue] = useState(null);
+  const [isOpenShowIssueDialog, setIsOpenShowIssueDialog] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -57,6 +59,10 @@ const Todo = () => {
     });
   };
 
+  const handleClose = () => {
+    setIsOpenShowIssueDialog(false);
+  };
+
   return (
     <React.Fragment>
       <CreateForm
@@ -67,9 +73,16 @@ const Todo = () => {
       <Issue
         issues={issues}
         deleteIssue={deleteIssue}
-        showIssue={showIssue}
         getIssue={getIssue}
+        setIsOpenShowIssueDialog={setIsOpenShowIssueDialog}
       />
+      {isOpenShowIssueDialog && showIssue && (
+        <ShowIssueDialog
+          isOpenShowIssueDialog={isOpenShowIssueDialog}
+          handleClose={handleClose}
+          showIssue={showIssue}
+        />
+      )}
     </React.Fragment>
   );
 };

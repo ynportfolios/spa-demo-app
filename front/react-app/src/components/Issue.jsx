@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Issue = ({ issues, deleteIssue, showIssue, getIssue }) => {
+const Issue = ({ issues, deleteIssue, getIssue, setIsOpenShowIssueDialog }) => {
   const classes = useStyles();
 
   return (
@@ -28,7 +28,13 @@ const Issue = ({ issues, deleteIssue, showIssue, getIssue }) => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button variant="contained" onClick={() => getIssue(issue.id)}>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  getIssue(issue.id);
+                  setIsOpenShowIssueDialog(true);
+                }}
+              >
                 SHOW
               </Button>
               <Button variant="contained" color="primary">
@@ -51,8 +57,8 @@ const Issue = ({ issues, deleteIssue, showIssue, getIssue }) => {
 Issue.propTypes = {
   issues: PropTypes.array,
   deleteIssue: PropTypes.func,
-  showIssue: PropTypes.object,
   getIssue: PropTypes.func,
+  setIsOpenShowIssueDialog: PropTypes.func,
 };
 
 export default Issue;
