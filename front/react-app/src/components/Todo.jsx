@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Issue from "./Issue";
 import CreateForm from "./CreateForm";
 import ShowIssueDialog from "./ShowIssueDialog";
+import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 
 const Todo = () => {
@@ -64,12 +65,17 @@ const Todo = () => {
         setCreateIssue={setCreateIssue}
         createNewIssue={createNewIssue}
       />
-      <Issue
-        issues={issues}
-        deleteIssue={deleteIssue}
-        getIssue={getIssue}
-        setIsOpenShowIssueDialog={setIsOpenShowIssueDialog}
-      />
+      <Grid container spacing={2}>
+        {issues.map((issue) => (
+          <Issue
+            key={issue.id}
+            issue={issue}
+            deleteIssue={deleteIssue}
+            getIssue={getIssue}
+            setIsOpenShowIssueDialog={setIsOpenShowIssueDialog}
+          />
+        ))}
+      </Grid>
       {isOpenShowIssueDialog && showIssue && (
         <ShowIssueDialog
           isOpenShowIssueDialog={isOpenShowIssueDialog}
