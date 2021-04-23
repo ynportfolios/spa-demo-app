@@ -64,15 +64,13 @@ const Todo = () => {
         name: name,
       })
       .then((response) => {
-        let updatedIssueIndex;
-        issues.forEach(function (issue, index) {
+        issues.forEach(function (issue, index, issues) {
           if (issue.id === id) {
-            updatedIssueIndex = index;
+            const newIssues = issues.slice();
+            newIssues[index] = response.data;
+            setIssues(newIssues);
           }
         });
-        const newIssues = issues.slice();
-        newIssues[updatedIssueIndex] = response.data;
-        setIssues(newIssues);
       })
       .catch((error) => {
         console.log("Update error!!!", error);
