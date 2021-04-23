@@ -64,9 +64,9 @@ const Todo = () => {
         name: name,
       })
       .then((response) => {
-        issues.forEach(function (issue, index, issues) {
+        issues.forEach(function (issue, index, preventIssues) {
           if (issue.id === id) {
-            const newIssues = issues.slice();
+            const newIssues = preventIssues.slice();
             newIssues[index] = response.data;
             setIssues(newIssues);
           }
