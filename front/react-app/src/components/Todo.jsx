@@ -58,6 +58,27 @@ const Todo = () => {
     setIsOpenShowIssueDialog(false);
   };
 
+  const updateIssue = (id, name) => {
+    axios
+      .patch(`http://localhost:3000/issues/${id}`, {
+        name: name,
+      })
+      .then((response) => {
+        let updatedIssueIndex;
+        issues.forEach(function (issue, index) {
+          if (issue.id === id) {
+            updatedIssueIndex = index;
+          }
+        });
+        const newIssues = issues.slice();
+        newIssues[updatedIssueIndex] = response.data;
+        setIssues(newIssues);
+      })
+      .catch((error) => {
+        console.log("Update error!!!", error);
+      });
+  };
+
   return (
     <React.Fragment>
       <CreateForm
@@ -73,6 +94,7 @@ const Todo = () => {
             deleteIssue={deleteIssue}
             getIssue={getIssue}
             setIsOpenShowIssueDialog={setIsOpenShowIssueDialog}
+            updateIssue={updateIssue}
           />
         ))}
       </Grid>

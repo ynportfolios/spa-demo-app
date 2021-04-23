@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import EditForm from "./EditForm";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -14,8 +15,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Issue = ({ issue, deleteIssue, getIssue, setIsOpenShowIssueDialog }) => {
+const Issue = ({
+  issue,
+  deleteIssue,
+  getIssue,
+  setIsOpenShowIssueDialog,
+  updateIssue,
+}) => {
   const classes = useStyles();
+
+  const [editIssueName, setEditIssueName] = useState(null);
+  const [isOpenEditIssueForm, setIsOpenEditIssueForm] = useState(false);
 
   return (
     <Grid item xs={12} md={6} lg={3}>
@@ -35,7 +45,14 @@ const Issue = ({ issue, deleteIssue, getIssue, setIsOpenShowIssueDialog }) => {
           >
             SHOW
           </Button>
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              !editIssueName && setEditIssueName(issue.name);
+              setIsOpenEditIssueForm(!isOpenEditIssueForm);
+            }}
+          >
             EDIT
           </Button>
           <Button
@@ -47,6 +64,14 @@ const Issue = ({ issue, deleteIssue, getIssue, setIsOpenShowIssueDialog }) => {
           </Button>
         </CardActions>
       </Card>
+      {isOpenEditIssueForm && (
+        <EditForm
+          editIssueId={issue.id}
+          editIssueName={editIssueName}
+          setEditIssueName={setEditIssueName}
+          updateIssue={updateIssue}
+        />
+      )}
     </Grid>
   );
 };
@@ -55,6 +80,7 @@ Issue.propTypes = {
   deleteIssue: PropTypes.func,
   getIssue: PropTypes.func,
   setIsOpenShowIssueDialog: PropTypes.func,
+  updateIssue: PropTypes.func,
 };
 
 export default Issue;

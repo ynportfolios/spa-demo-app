@@ -7,8 +7,7 @@ import Box from "@material-ui/core/Box";
 
 const CreateForm = ({ createIssue, setCreateIssue, createNewIssue }) => {
   return (
-    <React.Fragment>
-      <Grid container justify="center"></Grid>
+    <Grid container justify="center">
       <Grid item xs={12}>
         <TextField
           label="name"
@@ -23,7 +22,7 @@ const CreateForm = ({ createIssue, setCreateIssue, createNewIssue }) => {
           </Button>
         </Box>
       </Grid>
-    </React.Fragment>
+    </Grid>
   );
 };
 CreateForm.propTypes = {
