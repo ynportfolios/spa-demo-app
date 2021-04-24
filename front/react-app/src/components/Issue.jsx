@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 const Issue = ({
   issue,
   deleteIssue,
-  getIssue,
+  setShowIssue,
   setIsOpenShowIssueDialog,
   updateIssue,
 }) => {
@@ -39,7 +39,7 @@ const Issue = ({
           <Button
             variant="contained"
             onClick={() => {
-              getIssue(issue.id);
+              setShowIssue(issue);
               setIsOpenShowIssueDialog(true);
             }}
           >
@@ -78,7 +78,7 @@ const Issue = ({
 Issue.propTypes = {
   issue: PropTypes.object,
   deleteIssue: PropTypes.func,
-  getIssue: PropTypes.func,
+  setShowIssue: PropTypes.func,
   setIsOpenShowIssueDialog: PropTypes.func,
   updateIssue: PropTypes.func,
 };

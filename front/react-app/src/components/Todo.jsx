@@ -48,12 +48,6 @@ const Todo = () => {
       });
   };
 
-  const getIssue = (id) => {
-    axios.get(`http://localhost:3000/issues/${id}`).then((response) => {
-      setShowIssue(response.data);
-    });
-  };
-
   const handleClose = () => {
     setIsOpenShowIssueDialog(false);
   };
@@ -90,7 +84,7 @@ const Todo = () => {
             key={issue.id}
             issue={issue}
             deleteIssue={deleteIssue}
-            getIssue={getIssue}
+            setShowIssue={setShowIssue}
             setIsOpenShowIssueDialog={setIsOpenShowIssueDialog}
             updateIssue={updateIssue}
           />
