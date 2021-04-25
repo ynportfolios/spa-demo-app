@@ -3,7 +3,12 @@ import Issue from "./Issue";
 import CreateForm from "./CreateForm";
 import ShowIssueDialog from "./ShowIssueDialog";
 import Grid from "@material-ui/core/Grid";
-import axios from "axios";
+import {
+  fetchIssues,
+  postIssue,
+  deleteIssue,
+  patchIssue,
+} from "../actions/issues";
 
 const Todo = () => {
   const [issues, setIssues] = useState([]);
@@ -12,24 +17,19 @@ const Todo = () => {
   const [isOpenShowIssueDialog, setIsOpenShowIssueDialog] = useState(false);
 
   useEffect(() => {
-    async function fetchData() {
-      const result = await axios.get("http://localhost:3000/issues");
-      setIssues(result.data);
-    }
-    fetchData();
+    fetchIssues().then((response) => setIssues(response.data));
   }, []);
 
   const createNewIssue = () => {
-    axios
-      .post("http://localhost:3000/issues", {
-        name: createIssue,
-      })
+    postIssue({
+      name: createIssue,
+    })
       .then((response) => {
         setIssues([...issues, response.data]);
         resetTextField();
       })
       .catch((error) => {
-        console.log("registration error!!!", error);
+        console.error("registration error!!!", error);
       });
   };
 
@@ -37,14 +37,13 @@ const Todo = () => {
     setCreateIssue("");
   };
 
-  const deleteIssue = (id) => {
-    axios
-      .delete(`http://localhost:3000/issues/${id}`)
+  const destroyIssue = (id) => {
+    deleteIssue(id)
       .then((response) => {
         setIssues(issues.filter((issue) => issue.id !== response.data.id));
       })
       .catch((error) => {
-        console.log("delete error!!!", error);
+        console.error("delete error!!!", error);
       });
   };
 
@@ -53,10 +52,9 @@ const Todo = () => {
   };
 
   const updateIssue = (id, name) => {
-    axios
-      .patch(`http://localhost:3000/issues/${id}`, {
-        name: name,
-      })
+    patchIssue(id, {
+      name: name,
+    })
       .then((response) => {
         issues.forEach(function (issue, index, preventIssues) {
           if (issue.id === id) {
@@ -67,7 +65,7 @@ const Todo = () => {
         });
       })
       .catch((error) => {
-        console.log("Update error!!!", error);
+        console.error("Update error!!!", error);
       });
   };
 
@@ -83,7 +81,7 @@ const Todo = () => {
           <Issue
             key={issue.id}
             issue={issue}
-            deleteIssue={deleteIssue}
+            destroyIssue={destroyIssue}
             setShowIssue={setShowIssue}
             setIsOpenShowIssueDialog={setIsOpenShowIssueDialog}
             updateIssue={updateIssue}
