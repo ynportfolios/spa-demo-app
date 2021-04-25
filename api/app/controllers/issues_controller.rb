@@ -1,13 +1,9 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: %i[show destroy update]
+  before_action :set_issue, only: %i[destroy update]
 
   def index
     issues = Issue.all.order(:id)
     render json: issues
-  end
-
-  def show
-    render json: @issue
   end
 
   def create
