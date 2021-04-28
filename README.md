@@ -1,4 +1,7 @@
-# 実行手順
+#SPA のデモアプリ
+https://user-images.githubusercontent.com/73118731/116395430-143f8a00-a85f-11eb-90f1-935d22a89a86.gif
+
+## 実行手順
 
 **前提：git、docker、docker-compose をインストールしていること**
 
