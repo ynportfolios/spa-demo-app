@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Issue = ({
   issue,
-  deleteIssue,
+  destroyIssue,
   setShowIssue,
   setIsOpenShowIssueDialog,
   updateIssue,
@@ -58,7 +58,7 @@ const Issue = ({
           <Button
             variant="contained"
             color="secondary"
-            onClick={() => deleteIssue(issue.id)}
+            onClick={() => destroyIssue(issue.id)}
           >
             DELETE
           </Button>
@@ -77,7 +77,7 @@ const Issue = ({
 };
 Issue.propTypes = {
   issue: PropTypes.object,
-  deleteIssue: PropTypes.func,
+  destroyIssue: PropTypes.func,
   setShowIssue: PropTypes.func,
   setIsOpenShowIssueDialog: PropTypes.func,
   updateIssue: PropTypes.func,
