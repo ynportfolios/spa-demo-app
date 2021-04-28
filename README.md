@@ -12,7 +12,7 @@
   ```
   cd spa-demo-app
   ```
-- docker コンテナ（web・db）を起動
+- docker コンテナ（api・front・db）を起動
   - 以下のコマンドを実行
   ```
   docker-compose up --build -d
