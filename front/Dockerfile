@@ -1,3 +1,3 @@
 FROM node:14.5.0-alpine
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/react-app
 RUN npm install
