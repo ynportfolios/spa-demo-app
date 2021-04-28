@@ -1,4 +1,4 @@
-# 実行方法
+# 実行手順
 
 **前提：git、docker、docker-compose をインストールしていること**
 
