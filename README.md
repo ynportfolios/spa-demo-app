@@ -50,6 +50,7 @@
 - サーバーの実行・アクセス
   - 以下のコマンドを実行
   ```
+  npm install
   npm start
   ```
   - ブラウザで localhost:8000 にアクセス
