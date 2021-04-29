@@ -1,6 +1,6 @@
 # SPA のデモアプリ
 
-![spa-demo-app](https://user-images.githubusercontent.com/73118731/116396540-7baa0980-a860-11eb-82d0-e5cff80b45f5.gif)
+![spa-demo-app](https://user-images.githubusercontent.com/73118731/116557608-8e444180-a939-11eb-93c5-4735266cb263.mov)
 
 ## 実行手順
 
@@ -9,7 +9,7 @@
 - git から spa-demo-app をクローン
   - 以下のコマンドを実行
   ```
-  git clone https://github.com/ynportfolios/spa-demo-app.git
+  git clone -b crud-sample https://github.com/ynportfolios/spa-demo-app.git
   ```
 - spa-demo-app フォルダに移動
   - 以下のコマンドを実行
