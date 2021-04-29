@@ -1,6 +1,6 @@
 # SPA のデモアプリ
 
-https://user-images.githubusercontent.com/73118731/116557608-8e444180-a939-11eb-93c5-4735266cb263.mov
+https://user-images.githubusercontent.com/73118731/116558700-ad8f9e80-a93a-11eb-80df-5cad20d0d683.mov
 
 ## 実行手順
 
