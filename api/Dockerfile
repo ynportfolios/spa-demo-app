@@ -10,6 +10,6 @@ RUN apt-get update && apt-get install -y \
   postgresql-client \
   yarn
 
-WORKDIR /spa-demo-app
-COPY Gemfile Gemfile.lock /spa-demo-app/
+WORKDIR /sojitomo
+COPY Gemfile Gemfile.lock /sojitomo/
 RUN bundle install
